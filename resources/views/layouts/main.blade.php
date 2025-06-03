@@ -26,13 +26,13 @@
                     <div class="media">
                         <img src="https://asset-a.grid.id/crop/0x0:0x0/x/photo/2022/08/15/dor2jpg-20220815092143.jpg" height="50" width="40" class="align-self-center mr-3" alt="...">
                         <div class="media-body">
-                          <h5 class="mt-0">Elva</h5>
+                          <h5 class="mt-0">{{Auth::user()->nama ?? "No User"}}</h5>
                           <p class="mb-0"><small><i class="bi bi-clock"></i> Pkl 13.00</small></p>
                         </div>
                       </div>
                   </a>
                   <a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Change Password</a>
-                  <a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                  <a class="dropdown-item" href="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
                 </div>
               </div>
         </div>
@@ -43,7 +43,7 @@
       <div class="row">
         <div class="col-md-3 vh-100 border">
           <div class="nav flex-column nav-pills pt-4" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-            <a class="nav-link {{($key=='home')? 'active':''}}" href="/" role="tab">Home</a>
+            <a class="nav-link {{($key=='home')? 'active':''}}" href="/home" role="tab">Home</a>
             <a class="nav-link {{($key=='movie')? 'active':''}}" href="/movie" role="tab">Data movie</a>
             <a class="nav-link {{($key=='kategori')? 'active':''}}" href="/kategori" role="tab">Data Kategori</a>
             <a class="nav-link {{($key=='genre')? 'active':''}}" href="/genre" role="tab">Data Genre</a>
@@ -54,12 +54,12 @@
         </div>
       </div>
 
-    <!-- Footer -->
+    <!-- Footer
     <footer class="row">
     <div class="col-md-12 py-4 bg-primary text-center text-white">
         &copy; {{ date('Y') }} MovieWeb. All rights reserved.
     </div>
-    </footer>
+    </footer> -->
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

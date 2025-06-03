@@ -7,6 +7,14 @@
                 <a href="/movie/addmovie" class="btn btn-primary"><i class="bi bi-plus-circle"></i> Movie</a>
             </div>
               <div class="card-body">
+                @if (session("alert"))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <strong>{{session('alert')}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                @endif
                 <table id="example" class="display" style="width:100%">
                     <thead>
                         <tr>
@@ -37,6 +45,7 @@
                             </td>
                             <td>
                                 <a href="/movie/editmovie/{{$m->id}}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                                <a href="/delete/{{$m->id}}" class="btn btn-danger"><i class="bi bi-trash"></i></a>
                             </td>
 
                         </tr>

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use App\Movie; //import movie
+use function PHPUnit\Framework\returnArgument;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 
@@ -49,7 +51,7 @@ class NavController extends Controller
             'genre' => $request->genre,
             'poster' => $path
         ]);
-        return redirect('/movie');
+        return redirect('/movie')->with('alert', 'Movie added successfully!');
     }
     public function editmovie($id)
     {
@@ -79,9 +81,52 @@ class NavController extends Controller
             $path = "";
         }
         $mv->save();
-        return redirect('/movie');
+        return redirect('/movie')->with('alert', 'Movie updated successfully!');
 
     }
+    public function deletemovie($id)
+    {
+        //cari id
+        $mv = Movie::find($id);
+        //cek ada poster atau ga
+        if($mv->poster)
+        {
+            Storage::disk('public')->delete($mv->poster);
+        }
+        //hapus data di database
+        $mv->delete();
+
+        //kembali ke halaman utama/ movie
+        return redirect('/movie')->with('alert', 'Movie deleted successfully!');
+    }
+
+    public function login()
+    {
+        return view('login');
+    }
+
+    public function ceklogin(Request $request)
+    {
+        if(!Auth::attempt([
+            'username'=> $request->username,
+            'password'=> $request->password
+        ]))
+        {
+            return redirect('/')->with('alert', 'Login failed! Username or password is incorrect.');
+        }
+        else
+        {
+            return redirect('/home')->with('alert', 'Login successful!');
+        }
+
+    }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/')->with('alert', 'You have been logged out successfully!');
+    }
+
 
 
 }
