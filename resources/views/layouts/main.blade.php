@@ -31,7 +31,7 @@
                         </div>
                       </div>
                   </a>
-                  <a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Change Password</a>
+                  <a class="dropdown-item" href="/edituser"><i class="bi bi-gear"></i> Change Password</a>
                   <a class="dropdown-item" href="/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
                 </div>
               </div>

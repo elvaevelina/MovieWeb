@@ -127,6 +127,37 @@ class NavController extends Controller
         return redirect('/')->with('alert', 'You have been logged out successfully!');
     }
 
+    public function searchmovie(Request $request)
+    {
+        $search = $request->input('search');
+        $mv = Movie::where('title', 'LIKE', '%' . $search . '%')->get();
+        return view('searchmovie', ['key' => 'searchmovie', 'mv' => $mv, 'search' => $search]);
+    }
+    public function actsearchmovie(Request $request)
+    {
+        $search = $request->input('q');
+        $mv = Movie::where('title', 'LIKE', '%' . $search . '%')->get();
+        return view('actsearchmovie', ['data'=>$mv]);
+    }
+    public function edituser()
+    {
+        return view('edituser', ['key' => '']);
+    }
+    public function updateuser(Request $request)
+    {
+        if($request->password_baru == $request->konfirmasi_password)
+        {
+            $user = Auth::user();
+            $user->password = bcrypt($request->password_baru);
+            $user->save();
+            return redirect('/edituser')->with('info', 'User updated successfully!');
+        }
+        else
+        {
+            return redirect('/edituser')->with('info', 'Password confirmation does not match!');
+        }
+    }
+
 
 
 }
